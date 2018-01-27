@@ -7,7 +7,11 @@
 
 package frc.team166.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team166.chopshoplib.commands.SubsystemCommand;
+import frc.team166.chopshoplib.sensors.Lidar;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -15,9 +19,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ExampleSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    Lidar myLidar = new Lidar(0x10);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(Distance());
+        SmartDashboard.putNumber("Distance", myLidar.GetDistance());
+    }
+
+    public Command Distance() {
+        return new SubsystemCommand(this) {
+
+            @Override
+            protected void execute() {
+                SmartDashboard.putNumber("Distance", myLidar.GetDistance());
+            }
+
+            @Override
+            protected boolean isFinished() {
+                return false;
+            }
+        };
     }
 }

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team166.chopshoplib.sensors.Lidar;
 import frc.team166.robot.commands.ExampleCommand;
 import frc.team166.robot.subsystems.Drive;
 import frc.team166.robot.subsystems.ExampleSubsystem;
@@ -26,7 +27,7 @@ import frc.team166.robot.subsystems.ExampleSubsystem;
 public class Robot extends TimedRobot {
     public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
     //this just adds a drive subsystem
-    public static final Drive drive = new Drive();
+    // public static final Drive drive = new Drive();
     public static OI m_oi;
 
     Command m_autonomousCommand;
@@ -40,7 +41,6 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         m_oi = new OI();
         m_chooser.addDefault("Default Auto", new ExampleCommand());
-        // chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", m_chooser);
 
     }
