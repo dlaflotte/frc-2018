@@ -21,6 +21,10 @@ public class ExampleSubsystem extends Subsystem {
     // here. Call these from Commands.
     Lidar myLidar = new Lidar(0x10);
 
+    public ExampleSubsystem() {
+        addChild(myLidar);
+    }
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(Distance());
@@ -32,7 +36,7 @@ public class ExampleSubsystem extends Subsystem {
 
             @Override
             protected void execute() {
-                SmartDashboard.putNumber("Distance", myLidar.GetDistance());
+                //SmartDashboard.putNumber("Distance", myLidar.GetDistance());
             }
 
             @Override

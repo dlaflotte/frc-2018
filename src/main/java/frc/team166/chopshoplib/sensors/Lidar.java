@@ -2,7 +2,10 @@ package frc.team166.chopshoplib.sensors;
 
 import java.nio.ByteBuffer;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,11 +27,12 @@ public class Lidar extends SensorBase {
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType("LiDAR");
-        double dDistance = (double) GetDistance();
-        builder.addDoubleProperty("Distance", () -> {
-            return (dDistance);
-        }, null);
 
+        NetworkTableEntry mmDistance = builder.getEntry("Distance");
+
+        builder.setUpdateTable(() -> {
+            mmDistance.setNumber(GetDistance());
+        });
     }
 
     public Lidar(int kAddress) {
