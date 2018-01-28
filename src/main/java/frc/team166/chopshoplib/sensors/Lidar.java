@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
 public class Lidar extends SensorBase {
-    I2C I2CBuss;
+    I2C I2CBus;
 
     public enum Unit {
         /**
@@ -29,14 +29,14 @@ public class Lidar extends SensorBase {
     }
 
     public Lidar(int kAddress) {
-        I2CBuss = new I2C(I2C.Port.kOnboard, kAddress);
+        I2CBus = new I2C(I2C.Port.kOnboard, kAddress);
     }
 
     public int GetDistance() {
 
         byte[] dataBuffer = new byte[2];
-        I2CBuss.write(0x44, 0x1);
-        I2CBuss.readOnly(dataBuffer, 2);
+        I2CBus.write(0x44, 0x1);
+        I2CBus.readOnly(dataBuffer, 2);
         int iDistance = dataBuffer[0] << 8 | dataBuffer[1];
         return iDistance;
     }
