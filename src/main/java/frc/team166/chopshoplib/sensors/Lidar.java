@@ -41,17 +41,9 @@ public class Lidar extends SensorBase {
 
     public int GetDistance() {
         byte[] dataBuffer = new byte[2];
-<<<<<<< refs/remotes/JoshLaflotte/Drive
         I2CBus.write(0x44, 0x1);
         I2CBus.readOnly(dataBuffer, 2);
-        int iDistance = dataBuffer[0] << 8 | dataBuffer[1];
-        return iDistance;
-=======
-
-        I2CBuss.write(0x44, 0x1);
-        I2CBuss.readOnly(dataBuffer, 2);
         ByteBuffer bbConvert = ByteBuffer.wrap(dataBuffer);
         return bbConvert.getShort();
->>>>>>> Add working Lidar
     }
 }
