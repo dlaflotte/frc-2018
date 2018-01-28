@@ -32,6 +32,7 @@ public class ExampleSubsystem extends Subsystem {
     }
 
     public Command Distance() {
+        //Example of Calling Distance
         return new SubsystemCommand(this) {
 
             @Override
